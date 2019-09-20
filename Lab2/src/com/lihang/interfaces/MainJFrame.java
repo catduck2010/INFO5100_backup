@@ -5,23 +5,21 @@
  */
 package com.lihang.interfaces;
 
-import com.lihang.business.Product;
-import java.awt.Font;
+import com.lihang.business.VitalSignHistory;
 
 /**
  *
  * @author lihang
  */
-public class MainFrame extends javax.swing.JFrame {
+public class MainJFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form MainFrame
+     * Creates new form MainJFrame
      */
-    private Product product;
-    //private Font sf=new Font(".SF NS Text", Font.PLAIN, 10);
-    public MainFrame() {
+    private VitalSignHistory vsh;
+    public MainJFrame() {
         initComponents();
-        product = new Product();
+        vsh = new VitalSignHistory();
     }
 
     /**
@@ -40,11 +38,9 @@ public class MainFrame extends javax.swing.JFrame {
         displayJPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFont(new java.awt.Font("SF Pro Display", 0, 10)); // NOI18N
-        setMinimumSize(new java.awt.Dimension(1200, 600));
 
-        ctrlJPanel.setMaximumSize(new java.awt.Dimension(120, 32767));
-        ctrlJPanel.setMinimumSize(new java.awt.Dimension(100, 296));
+        ctrlJPanel.setMaximumSize(new java.awt.Dimension(160, 32767));
+        ctrlJPanel.setMinimumSize(new java.awt.Dimension(160, 280));
 
         createBtn.setText("Create Vital Sign");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -53,7 +49,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        viewBtn.setText("View VItal Signs");
+        viewBtn.setText("View Vital Signs");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
@@ -65,11 +61,11 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlJPanelLayout.setHorizontalGroup(
             ctrlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ctrlJPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(7, Short.MAX_VALUE)
                 .addGroup(ctrlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(createBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         ctrlJPanelLayout.setVerticalGroup(
             ctrlJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +74,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(createBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewBtn)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(ctrlJPanel);
@@ -89,31 +85,44 @@ public class MainFrame extends javax.swing.JFrame {
         displayJPanel.setLayout(displayJPanelLayout);
         displayJPanelLayout.setHorizontalGroup(
             displayJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 484, Short.MAX_VALUE)
         );
         displayJPanelLayout.setVerticalGroup(
             displayJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 296, Short.MAX_VALUE)
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         splitPane.setRightComponent(displayJPanel);
 
-        getContentPane().add(splitPane, java.awt.BorderLayout.CENTER);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        // TODO add your handling code here:
-        ViewJPanel viewPanel=new ViewJPanel(product);
-        splitPane.setRightComponent(viewPanel);
-    }//GEN-LAST:event_viewBtnActionPerformed
-
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        CreateJPanel createPanel=new CreateJPanel(product);
+        CreateJPanel createPanel=new CreateJPanel(vsh);
         splitPane.setRightComponent(createPanel);
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        ViewJPanel viewPanel=new ViewJPanel(vsh);
+        splitPane.setRightComponent(viewPanel);
+    }//GEN-LAST:event_viewBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,20 +141,20 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new MainJFrame().setVisible(true);
             }
         });
     }
