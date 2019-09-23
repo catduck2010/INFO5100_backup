@@ -234,10 +234,12 @@ public class ViewJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Filter abnormal BP that not between");
 
+        txtLvalue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtLvalue.setText("70");
 
         jLabel7.setText("and");
 
+        txtRvalue.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtRvalue.setText("140");
 
         btnFilter.setText("Filter");

@@ -81,7 +81,7 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="createBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Create Vital Sign"/>
+                <Property name="text" type="java.lang.String" value="Create"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBtnActionPerformed"/>
@@ -89,7 +89,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="viewBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="View VItal Signs"/>
+                <Property name="text" type="java.lang.String" value="View"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewBtnActionPerformed"/>

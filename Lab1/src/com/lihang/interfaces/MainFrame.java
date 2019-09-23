@@ -46,14 +46,14 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlJPanel.setMaximumSize(new java.awt.Dimension(120, 32767));
         ctrlJPanel.setMinimumSize(new java.awt.Dimension(100, 296));
 
-        createBtn.setText("Create Vital Sign");
+        createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtnActionPerformed(evt);
             }
         });
 
-        viewBtn.setText("View VItal Signs");
+        viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewBtnActionPerformed(evt);
