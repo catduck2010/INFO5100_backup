@@ -10,6 +10,7 @@ package com.lihang.business;
  * @author lihang
  */
 public class VitalSign {
+
     private String temperature;
     private String bloodPressure;
     private String pulse;
@@ -46,9 +47,9 @@ public class VitalSign {
     public void setDate(String date) {
         this.date = date;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return date;
     }
 }

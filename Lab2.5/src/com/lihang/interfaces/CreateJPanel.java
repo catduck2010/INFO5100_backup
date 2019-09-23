@@ -19,14 +19,14 @@ public class CreateJPanel extends javax.swing.JPanel {
      * Creates new form CreateJPanel
      */
     private VitalSignHistory vsh;
-    
+
     public CreateJPanel(VitalSignHistory history) {
         initComponents();
-        this.vsh=history;
-        
+        this.vsh = history;
+
     }
-    
-    private void setEmpty(){
+
+    private void setEmpty() {
         tempField.setText("");
         bpField.setText("");
         pulseField.setText("");
@@ -166,7 +166,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        VitalSign v=vsh.addVitalSign();
+        VitalSign v = vsh.addVitalSign();
         // Bind user input to vitalSign obj
         v.setTemperature(tempField.getText());
         v.setBloodPressure(bpField.getText());

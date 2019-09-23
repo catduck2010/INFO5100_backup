@@ -21,12 +21,13 @@ public class ViewJPanel extends javax.swing.JPanel {
      */
     private VitalSignHistory vsh;
     private VitalSign vs;
-    private boolean isEditing;
+    private boolean isEditing, filtered;
 
     public ViewJPanel(VitalSignHistory history) {
         initComponents();
         this.vsh = history;
         this.isEditing = false;
+        this.filtered = false;
         loadTable();
         resetDetailsPanel();
     }
@@ -86,8 +87,8 @@ public class ViewJPanel extends javax.swing.JPanel {
         historyLabelPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         historyTable = new javax.swing.JTable();
-        viewBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         btnResetTable = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -182,17 +183,17 @@ public class ViewJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(historyTable);
 
-        viewBtn.setText("View Details");
-        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnView.setText("View Details");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewBtnActionPerformed(evt);
+                btnViewActionPerformed(evt);
             }
         });
 
-        deleteBtn.setText("Delete");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -214,9 +215,9 @@ public class ViewJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, historyLabelPanelLayout.createSequentialGroup()
                 .addComponent(btnResetTable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewBtn)
+                .addComponent(btnView)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         historyLabelPanelLayout.setVerticalGroup(
             historyLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,8 +225,8 @@ public class ViewJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(historyLabelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(deleteBtn)
-                    .addComponent(viewBtn)
+                    .addComponent(btnDelete)
+                    .addComponent(btnView)
                     .addComponent(btnResetTable))
                 .addContainerGap())
         );
@@ -309,7 +310,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectedRow = this.historyTable.getSelectedRow();
 
@@ -326,9 +327,9 @@ public class ViewJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Please Select a row.", "No row selected", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_deleteBtnActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
         // TODO add your handling code here:
         int selectedRow = this.historyTable.getSelectedRow();
 
@@ -346,7 +347,7 @@ public class ViewJPanel extends javax.swing.JPanel {
 
             this.btnUpdateSave.setEnabled(false);
         }
-    }//GEN-LAST:event_viewBtnActionPerformed
+    }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnUpdateSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSaveActionPerformed
         // TODO add your handling code here:
@@ -373,38 +374,47 @@ public class ViewJPanel extends javax.swing.JPanel {
 
     private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
         // TODO add your handling code here:
-        int l = Integer.parseInt(txtLvalue.getText());
-        int r = Integer.parseInt(txtRvalue.getText());
-
-        if (l > r) {
-            JOptionPane.showMessageDialog(this, "Left value should not be larger than right!",
+        if(filtered){
+            JOptionPane.showMessageDialog(this, "Please reset table before another filter!",
                     "WARNING", JOptionPane.WARNING_MESSAGE);
-        } else {
-            //delete rows that values are not fit in the table
-            DefaultTableModel dtm=(DefaultTableModel)historyTable.getModel();
-            
-            for(int i=0;i<dtm.getRowCount();i++){
-                String _txtBP=(String)dtm.getValueAt(i, 1);
-                int bp=Integer.parseInt(_txtBP);
-                if(bp>=l&&bp<=r){
-                    dtm.removeRow(i);
+            btnFilter.setEnabled(false);
+        }else{
+            int l = Integer.parseInt(txtLvalue.getText());
+            int r = Integer.parseInt(txtRvalue.getText());
+
+            if (l > r) {
+                JOptionPane.showMessageDialog(this, "Left value should not be larger than right!",
+                        "WARNING", JOptionPane.WARNING_MESSAGE);
+            } else {
+                //delete rows that values are not fit in the table
+                DefaultTableModel dtm = (DefaultTableModel) historyTable.getModel();
+
+                for (int i = 0; i < dtm.getRowCount(); i++) {
+                    String _txtBP = (String) dtm.getValueAt(i, 1);
+                    int bp = Integer.parseInt(_txtBP);
+                    if (bp >= l && bp <= r) {
+                        dtm.removeRow(i);
+                    }
                 }
             }
+            filtered = true;
         }
-
     }//GEN-LAST:event_btnFilterActionPerformed
 
     private void btnResetTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetTableActionPerformed
         // TODO add your handling code here:
         loadTable();
+        filtered = false;
+        btnFilter.setEnabled(true);
     }//GEN-LAST:event_btnResetTableActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnResetTable;
     private javax.swing.JButton btnUpdateSave;
-    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton btnView;
     private javax.swing.JPanel detailsLabelPanel;
     private javax.swing.JPanel historyLabelPanel;
     private javax.swing.JTable historyTable;
@@ -423,6 +433,5 @@ public class ViewJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtPulse;
     private javax.swing.JTextField txtRvalue;
     private javax.swing.JTextField txtTemperature;
-    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

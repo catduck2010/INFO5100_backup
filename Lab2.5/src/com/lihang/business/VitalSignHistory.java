@@ -12,11 +12,11 @@ import java.util.ArrayList;
  * @author lihang
  */
 public class VitalSignHistory {
+
     private ArrayList<VitalSign> vitalSignHistory;
-    
-    
-    public VitalSignHistory(){
-        this.vitalSignHistory=new ArrayList<>();
+
+    public VitalSignHistory() {
+        this.vitalSignHistory = new ArrayList<>();
     }
 
     public ArrayList<VitalSign> getVitalSignHistory() {
@@ -26,15 +26,15 @@ public class VitalSignHistory {
     public void setVitalSignHistory(ArrayList<VitalSign> vitalSignHistory) {
         this.vitalSignHistory = vitalSignHistory;
     }
-    
-    public VitalSign addVitalSign(){
-        VitalSign vs=new VitalSign();
+
+    public VitalSign addVitalSign() {
+        VitalSign vs = new VitalSign();
         this.vitalSignHistory.add(vs);
         return vs;
     }
-    
-    public void deleteVitalSign(VitalSign vs){
+
+    public void deleteVitalSign(VitalSign vs) {
         this.vitalSignHistory.remove(vs);
     }
-    
+
 }

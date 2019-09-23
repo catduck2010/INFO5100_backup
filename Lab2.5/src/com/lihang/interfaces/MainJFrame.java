@@ -16,7 +16,8 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private VitalSignHistory vsh;
+    private final VitalSignHistory vsh;
+
     public MainJFrame() {
         initComponents();
         vsh = new VitalSignHistory();
@@ -116,13 +117,13 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-        CreateJPanel createPanel=new CreateJPanel(vsh);
+        CreateJPanel createPanel = new CreateJPanel(vsh);
         splitPane.setRightComponent(createPanel);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
-        ViewJPanel viewPanel=new ViewJPanel(vsh);
+        ViewJPanel viewPanel = new ViewJPanel(vsh);
         splitPane.setRightComponent(viewPanel);
     }//GEN-LAST:event_viewBtnActionPerformed
 
