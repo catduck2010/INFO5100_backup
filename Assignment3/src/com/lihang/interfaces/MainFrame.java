@@ -452,6 +452,7 @@ public class MainFrame extends javax.swing.JFrame {
                 && index != 2 && index != 3 && index != 7) {
             JOptionPane.showMessageDialog(this, "Please Enter Keywords.",
                     "NOTICE", JOptionPane.INFORMATION_MESSAGE);
+            return;
         }
         switch (index) {
             case 0:
