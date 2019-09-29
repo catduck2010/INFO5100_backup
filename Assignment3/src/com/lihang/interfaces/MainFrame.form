@@ -54,15 +54,16 @@
                           <Component id="dateLabel" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="btnLeftAdd" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="btnLeftFind" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="btnHome" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="btnQuit" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="btnInstructions" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="lblAvails" alignment="1" max="32767" attributes="0"/>
                           <Component id="lblUnavails" alignment="0" max="32767" attributes="0"/>
@@ -86,8 +87,10 @@
                       <Component id="lblAvails" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblUnavails" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="434" max="32767" attributes="0"/>
-                      <Component id="btnHome" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="399" max="32767" attributes="0"/>
+                      <Component id="btnInstructions" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnQuit" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -102,12 +105,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLeftFindActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnHome">
+            <Component class="javax.swing.JButton" name="btnQuit">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Home"/>
+                <Property name="text" type="java.lang.String" value="Quit"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHomeActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQuitActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -141,6 +144,14 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Unavailable: 000"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnInstructions">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Instructions"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInstructionsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -292,7 +303,7 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="120" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>

@@ -14,6 +14,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -64,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void loadTable() {
         DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
+        DecimalFormat df = new DecimalFormat("#0.0000000");
         dtm.setRowCount(0);
         for (CarInfo car : carList.getCarList()) {
             Object[] row = new Object[6];
@@ -73,7 +75,8 @@ public class MainFrame extends javax.swing.JFrame {
             row[2] = car.getManufacturer();
             row[3] = car.getModelNum();
             row[4] = car.getSeats();
-            row[5] = car.getCity();
+            row[5] = "("+df.format(car.getLatitude())+", "+
+                    df.format(car.getLongitude())+")";
 
             dtm.addRow(row);
         }
@@ -119,12 +122,13 @@ public class MainFrame extends javax.swing.JFrame {
         jSplitPane1 = new javax.swing.JSplitPane();
         panelLeft = new javax.swing.JPanel();
         btnLeftFind = new javax.swing.JButton();
-        btnHome = new javax.swing.JButton();
+        btnQuit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         dateLabel = new javax.swing.JLabel();
         btnLeftAdd = new javax.swing.JButton();
         lblAvails = new javax.swing.JLabel();
         lblUnavails = new javax.swing.JLabel();
+        btnInstructions = new javax.swing.JButton();
         jSplitPane2 = new javax.swing.JSplitPane();
         panelCarList = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
@@ -148,10 +152,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        btnHome.setText("Home");
-        btnHome.addActionListener(new java.awt.event.ActionListener() {
+        btnQuit.setText("Quit");
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHomeActionPerformed(evt);
+                btnQuitActionPerformed(evt);
             }
         });
 
@@ -174,6 +178,13 @@ public class MainFrame extends javax.swing.JFrame {
         lblUnavails.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblUnavails.setText("Unavailable: 000");
 
+        btnInstructions.setText("Instructions");
+        btnInstructions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInstructionsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLeftLayout = new javax.swing.GroupLayout(panelLeft);
         panelLeft.setLayout(panelLeftLayout);
         panelLeftLayout.setHorizontalGroup(
@@ -184,13 +195,14 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelLeftLayout.createSequentialGroup()
-                        .addGap(0, 8, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnLeftAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelLeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnLeftFind, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 9, Short.MAX_VALUE))
+                                .addComponent(btnQuit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnInstructions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(lblAvails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblUnavails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -210,8 +222,10 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(lblAvails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUnavails)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 434, Short.MAX_VALUE)
-                .addComponent(btnHome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 399, Short.MAX_VALUE)
+                .addComponent(btnInstructions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnQuit)
                 .addContainerGap())
         );
 
@@ -250,6 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
             tblCars.getColumnModel().getColumn(0).setMinWidth(15);
             tblCars.getColumnModel().getColumn(0).setMaxWidth(15);
             tblCars.getColumnModel().getColumn(4).setMaxWidth(50);
+            tblCars.getColumnModel().getColumn(5).setMinWidth(120);
         }
 
         btnReset.setText("Reset Table");
@@ -417,10 +432,10 @@ public class MainFrame extends javax.swing.JFrame {
         layout.next(bottomPanel);
     }//GEN-LAST:event_btnLeftFindActionPerformed
 
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
         // TODO add your handling code here:
-        goBackHome();
-    }//GEN-LAST:event_btnHomeActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnQuitActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
@@ -473,7 +488,7 @@ public class MainFrame extends javax.swing.JFrame {
                         if (car.isAvailable()) {
                             double calc = Haversine.distance(
                                     lat, car.getLatitude(),
-                                    lon, car.getLongtitude(),
+                                    lon, car.getLongitude(),
                                     0.0, 0.0);
                             if (calc < distance) {
                                 distance = calc;
@@ -637,6 +652,15 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+        InstructionsPanel panel=new InstructionsPanel(this.bottomPanel);
+        this.bottomPanel.add("MInstructionsJPanel", panel);
+
+        layout.next(bottomPanel);
+    }//GEN-LAST:event_btnInstructionsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -677,9 +701,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxFilter;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetails;
-    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnInstructions;
     private javax.swing.JButton btnLeftAdd;
     private javax.swing.JButton btnLeftFind;
+    private javax.swing.JButton btnQuit;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel dateLabel;

@@ -66,8 +66,19 @@ public class ManufacturerPanel extends javax.swing.JPanel {
             new String [] {
                 "Manufacturers"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblManus);
+        if (tblManus.getColumnModel().getColumnCount() > 0) {
+            tblManus.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jLabel1.setText("View all Manufacturers");
 
@@ -88,12 +99,12 @@ public class ManufacturerPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGoBack)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 136, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(0, 136, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(142, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

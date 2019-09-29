@@ -180,7 +180,7 @@ public class AddViewEditCarPanel extends JPanel {
         this.txtFirstName.setText(carInfo.getFirstName());
         this.txtLastName.setText(carInfo.getLastName());
         this.txtLat.setText(df.format(carInfo.getLatitude()));
-        this.txtLon.setText(df.format(carInfo.getLongtitude()));
+        this.txtLon.setText(df.format(carInfo.getLongitude()));
         this.txtMidName.setText(carInfo.getMiddleName());
         this.txtModelNum.setText(carInfo.getModelNum());
         this.txtSN.setText(carInfo.getSN());
@@ -502,7 +502,7 @@ public class AddViewEditCarPanel extends JPanel {
             car.setSN(this.txtSN.getText());
             car.setModelNum(this.txtModelNum.getText());
             car.setLatitude(Double.parseDouble(this.txtLat.getText()));
-            car.setLongtitude(Double.parseDouble(this.txtLon.getText()));
+            car.setLongitude(Double.parseDouble(this.txtLon.getText()));
 
             car.setAvailable(this.boxAvail.isSelected());
             System.out.println(this.boxAvail.isSelected());
@@ -538,7 +538,7 @@ public class AddViewEditCarPanel extends JPanel {
                 car.setSN(this.txtSN.getText());
                 car.setModelNum(this.txtModelNum.getText());
                 car.setLatitude(Double.parseDouble(this.txtLat.getText()));
-                car.setLongtitude(Double.parseDouble(this.txtLon.getText()));
+                car.setLongitude(Double.parseDouble(this.txtLon.getText()));
 
                 car.setAvailable(this.boxAvail.isSelected());
 
