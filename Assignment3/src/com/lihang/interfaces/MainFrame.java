@@ -227,7 +227,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find A Car", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # Between", "Test" }));
+        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find A Car", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # Between" }));
 
         tblCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

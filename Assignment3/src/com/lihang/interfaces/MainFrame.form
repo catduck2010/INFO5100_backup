@@ -228,7 +228,7 @@
                 <Component class="javax.swing.JComboBox" name="boxFilter">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="11">
+                      <StringArray count="10">
                         <StringItem index="0" value="Find A Car"/>
                         <StringItem index="1" value="Available"/>
                         <StringItem index="2" value="Unavailable"/>
@@ -239,7 +239,6 @@
                         <StringItem index="7" value="Model #"/>
                         <StringItem index="8" value="S/N"/>
                         <StringItem index="9" value="Seat # Between"/>
-                        <StringItem index="10" value="Test"/>
                       </StringArray>
                     </Property>
                   </Properties>
