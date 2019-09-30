@@ -21,7 +21,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="tabbedPane" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGoHome" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnRestore" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -48,7 +48,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSuper" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnRestore" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnGoBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGoHome" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -414,12 +414,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRestoreActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnGoBack">
+    <Component class="javax.swing.JButton" name="btnGoHome">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Home"/>
+        <Property name="text" type="java.lang.String" value="&#x2302; Home"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGoBackActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGoHomeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="titleLabel">

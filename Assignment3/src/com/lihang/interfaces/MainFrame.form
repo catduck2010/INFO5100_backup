@@ -267,10 +267,11 @@
                     <Component class="javax.swing.JTable" name="tblCars">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="6" rowCount="0">
+                          <Table columnCount="7" rowCount="0">
                             <Column editable="false" title="&#x2713;" type="java.lang.Object"/>
                             <Column editable="false" title="Driver" type="java.lang.Object"/>
-                            <Column editable="false" title="Brand" type="java.lang.Object"/>
+                            <Column editable="false" title="City" type="java.lang.Object"/>
+                            <Column editable="false" title="Car Brand" type="java.lang.Object"/>
                             <Column editable="false" title="Car Model" type="java.lang.Object"/>
                             <Column editable="false" title="Seats" type="java.lang.Object"/>
                             <Column editable="false" title="Current Location" type="java.lang.Object"/>
@@ -279,6 +280,11 @@
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="15" minWidth="15" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>

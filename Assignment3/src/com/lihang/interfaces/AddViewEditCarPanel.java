@@ -105,7 +105,7 @@ public class AddViewEditCarPanel extends JPanel {
         dateBtnMaintainedUntil.setBorder(aqua);
     }
 
-    private void goBack() {
+    private void goHome() {
         bottomPanel.remove(this);
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
         layout.previous(bottomPanel);
@@ -233,7 +233,7 @@ public class AddViewEditCarPanel extends JPanel {
         jLabel15 = new javax.swing.JLabel();
         btnSuper = new javax.swing.JButton();
         btnRestore = new javax.swing.JButton();
-        btnGoBack = new javax.swing.JButton();
+        btnGoHome = new javax.swing.JButton();
         titleLabel = new javax.swing.JLabel();
 
         jLabel2.setText("First Name");
@@ -439,10 +439,10 @@ public class AddViewEditCarPanel extends JPanel {
             }
         });
 
-        btnGoBack.setText("<< Go Home");
-        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+        btnGoHome.setText("⌂ Home");
+        btnGoHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGoBackActionPerformed(evt);
+                btnGoHomeActionPerformed(evt);
             }
         });
 
@@ -457,7 +457,7 @@ public class AddViewEditCarPanel extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnGoBack)
+                        .addComponent(btnGoHome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRestore)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -479,7 +479,7 @@ public class AddViewEditCarPanel extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSuper)
                     .addComponent(btnRestore)
-                    .addComponent(btnGoBack))
+                    .addComponent(btnGoHome))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -558,10 +558,10 @@ public class AddViewEditCarPanel extends JPanel {
 
     }//GEN-LAST:event_btnSuperActionPerformed
 
-    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
+    private void btnGoHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoHomeActionPerformed
         // TODO add your handling code here:
-        goBack();
-    }//GEN-LAST:event_btnGoBackActionPerformed
+        goHome();
+    }//GEN-LAST:event_btnGoHomeActionPerformed
 
     private void btnRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestoreActionPerformed
         // TODO add your handling code here:
@@ -571,7 +571,7 @@ public class AddViewEditCarPanel extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxAvail;
-    private javax.swing.JButton btnGoBack;
+    private javax.swing.JButton btnGoHome;
     private javax.swing.JButton btnRestore;
     private javax.swing.JButton btnSuper;
     private com.lihang.util.DateChooserJButton dateBtnMaintainedUntil;

@@ -86,7 +86,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnGoBack">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Home"/>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGoBackActionPerformed"/>

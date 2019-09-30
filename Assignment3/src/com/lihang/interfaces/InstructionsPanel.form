@@ -18,15 +18,28 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="368" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="384" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="265" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="262" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -36,11 +49,38 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnGoBack">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Home"/>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Back"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGoBackActionPerformed"/>
       </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Properties>
+        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="jTextArea1">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="This is the instruction of how to finish the operations that designed by the author Lihang Zhou (001302072) to answer all the questions of Assignment 3.&#xa;&#xa;To Find A Car, Simply change the combo box to &#x201c;Find A Car&#x201d; and enter your latitude and longitude like &#xa;&#x9;LATITUDE, LONGITUDE&#xa;and click the Search button to get a nearest car.&#xa;&#xa;Last Update Date, number of Available and Unavailable cars are shown left.&#xa;&#xa;Click Manufacturer button to show all MANUFACTURERS.&#xa;&#xa;Other questions are solved by the combo box that supports to search cars by Manufacturers, Year of Manufacturing, Seats, Serial Number(S/N), Model Number, City and all cars that are out of Maintainability.&#xa;&#xa;And the filter supports multi-level filtering until the table is empty. "/>
+            <Property name="wrapStyleWord" type="boolean" value="true"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Instructions"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

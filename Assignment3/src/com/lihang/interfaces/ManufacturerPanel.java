@@ -82,7 +82,7 @@ public class ManufacturerPanel extends javax.swing.JPanel {
 
         jLabel1.setText("View all Manufacturers");
 
-        btnGoBack.setText("<< Go Home");
+        btnGoBack.setText("<< Go Back");
         btnGoBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGoBackActionPerformed(evt);

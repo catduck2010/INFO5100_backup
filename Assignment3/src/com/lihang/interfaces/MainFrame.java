@@ -44,7 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
                 "Enter Keywords..."));
         setLastUpdate();
         setCarNums();
-
+        loadTable();
         this.boxFilter.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -68,14 +68,15 @@ public class MainFrame extends javax.swing.JFrame {
         DecimalFormat df = new DecimalFormat("#0.0000000");
         dtm.setRowCount(0);
         for (CarInfo car : carList.getCarList()) {
-            Object[] row = new Object[6];
+            Object[] row = new Object[7];
 
             row[0] = car;
             row[1] = car.getFirstName() + " " + car.getLastName();
-            row[2] = car.getManufacturer();
-            row[3] = car.getModelNum();
-            row[4] = car.getSeats();
-            row[5] = "("+df.format(car.getLatitude())+", "+
+            row[2] = car.getCity();
+            row[3] = car.getManufacturer();
+            row[4] = car.getModelNum();
+            row[5] = car.getSeats();
+            row[6] = "("+df.format(car.getLatitude())+", "+
                     df.format(car.getLongitude())+")";
 
             dtm.addRow(row);
@@ -248,11 +249,11 @@ public class MainFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "✓", "Driver", "Brand", "Car Model", "Seats", "Current Location"
+                "✓", "Driver", "City", "Car Brand", "Car Model", "Seats", "Current Location"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -263,8 +264,8 @@ public class MainFrame extends javax.swing.JFrame {
         if (tblCars.getColumnModel().getColumnCount() > 0) {
             tblCars.getColumnModel().getColumn(0).setMinWidth(15);
             tblCars.getColumnModel().getColumn(0).setMaxWidth(15);
-            tblCars.getColumnModel().getColumn(4).setMaxWidth(50);
-            tblCars.getColumnModel().getColumn(5).setMinWidth(120);
+            tblCars.getColumnModel().getColumn(5).setMaxWidth(50);
+            tblCars.getColumnModel().getColumn(6).setMinWidth(120);
         }
 
         btnReset.setText("Reset Table");

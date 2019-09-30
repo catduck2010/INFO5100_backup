@@ -28,10 +28,32 @@ public class CarInfo {
     private Date lastMaintenance;
 
     //Location
-    private double longitude;
     private double latitude;
+    private double longitude;
 
     private String city;
+
+    public CarInfo(String firstName, String lastName, String manufacturer, 
+            String modelNum, String SN, int seats, boolean isAvailable, 
+            Date productionDate, Date lastMaintenance, 
+            double latitude, double longitude, String city) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.manufacturer = manufacturer;
+        this.modelNum = modelNum;
+        this.SN = SN;
+        this.seats = seats;
+        this.isAvailable = isAvailable;
+        this.productionDate = productionDate;
+        this.lastMaintenance = lastMaintenance;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.city = city;
+    }
+
+    public CarInfo() {
+        
+    }
 
     public void setProductionDate(Date productionDate) {
         this.productionDate = productionDate;
