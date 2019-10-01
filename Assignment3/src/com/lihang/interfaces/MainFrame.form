@@ -24,7 +24,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jSplitPane1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="0" pref="940" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -183,7 +183,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" pref="722" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="783" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="boxFilter" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -249,7 +249,7 @@
                         <StringItem index="6" value="Maint. Expired"/>
                         <StringItem index="7" value="Model #"/>
                         <StringItem index="8" value="S/N"/>
-                        <StringItem index="9" value="Seat # Between"/>
+                        <StringItem index="9" value="Seat # (Between)"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -299,12 +299,12 @@
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="60" prefWidth="60" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="50" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="40" minWidth="40" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -361,7 +361,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jLabel2" pref="722" max="32767" attributes="0"/>
+                          <Component id="jLabel2" pref="783" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

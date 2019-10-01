@@ -119,25 +119,25 @@ public class CarList {
         //String modelNum, String SN, int seats, boolean isAvailable, Date productionDate, 
         //Date lastMaintenance, double longitude, double latitude, String city)
         CarInfo car0 = new CarInfo("John", "Appleseed", "Toyota", "TO-0001",
-                "KDJXHDIDFO", 4, true, lastYear, nextDay, 42.3549825, -71.072195, "Boston"),
-                car1 = new CarInfo("John", "Dick", "Volkswagen", "VW-0009",
-                        "BXCUBYQSDI", 4, true, lastYear, nextDay, 37.7844452,-122.4731381, "San Francisco"),
+                        "KDJXHDIDFO", 4, true, lastYear, nextDay, 42.3549825, -71.072195, "Boston"),
+                car1 = new CarInfo("Van", "Darkholme", "Volkswagen", "VW-0009",
+                        "BXCUBYQSDI", 4, false, lastYear, nextDay, 37.7844452, -122.4731381, "San Francisco"),
                 car2 = new CarInfo("Bob", "Sherlock", "Honda", "HD-9080",
-                        "XCNXUGCYSD", 4, true, lastYear, nextDay, 42.3556404,-71.055665, "Boston"),
+                        "XCNXUGCYSD", 2, true, lastYear, nextDay, 42.3556404, -71.055665, "Boston"),
                 car3 = new CarInfo("Robert", "Watson", "Kia", "KIA-K5",
-                        "XBCYTDFSOD", 4, true, lastYear, nextDay, 38.8841189,-76.9950225, "D.C."),
+                        "XBCYTDFSOD", 4, true, lastYear, nextDay, 38.8841189, -76.9950225, "D.C."),
                 car4 = new CarInfo("Hi", "Lee", "Hyundai", "HY-SD",
-                        "XNCIXUBCUL", 4, true, lastYear, nextDay, 42.3669166,-71.0584111, "Boston"),
+                        "XNCIXUBCUL", 7, false, lastYear, nextDay, 42.3669166, -71.0584111, "Boston"),
                 car5 = new CarInfo("Ji-Won", "Kim", "Renault", "TO-0001",
-                        "SDHXCUYSKD", 4, true, lastYear, nextDay, 42.3551624,-71.0633332, "Boston"),
+                        "SDHXCUYSKD", 4, false, lastYear, nextDay, 42.3551624, -71.0633332, "Boston"),
                 car6 = new CarInfo("Elizabeth", "Hart", "Peugeot", "PG-30",
-                        "XIOCJSDFDX", 4, true, lastYear, nextDay, 42.3588362,-71.0578277, "Boston"),
+                        "XIOCJSDFDX", 20, true, lastYear, nextDay, 42.3588362, -71.0578277, "Boston"),
                 car7 = new CarInfo("Samantha", "Timo", "Nissan", "TO-0001",
-                        "QGDUIFSDHD", 4, true, lastYear, nextDay, 42.3595541,-71.0524312, "Boston"),
+                        "QGDUIFSDHD", 10, true, lastYear, nextDay, 42.3595541, -71.0524312, "Boston"),
                 car8 = new CarInfo("Roose", "Dick", "Tesla", "TO-0001",
-                        "KIDFSDFBXO", 4, true, lastYear, nextDay, 42.3567012,-71.0573372, "Boston"),
+                        "KIDFSDFBXO", 4, false, lastYear, nextDay, 42.3567012, -71.0573372, "Boston"),
                 car9 = new CarInfo("YT", "Yang", "Renault Samsung", "RS-QM6",
-                        "BJDBSFDNFD", 4, true, lastYear, nextDay, 42.3560868,-71.0532185, "Boston");
+                        "BJDBSFDNFD", 7, true, lastYear, nextDay, 42.3560868, -71.0532185, "Boston");
 
         carList.add(car0);
         carList.add(car1);

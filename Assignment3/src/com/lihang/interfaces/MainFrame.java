@@ -34,6 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private CarList carList;
+    private final String hintText="Enter Keywords";
 
     public MainFrame() {
         initComponents();
@@ -41,7 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
         carList = new CarList();
         this.bottomPanel.setLayout(new CardLayout());
         txtSearch.addFocusListener(new JTextFieldHintListener(txtSearch,
-                "Enter Keywords..."));
+                hintText));
         setLastUpdate();
         setCarNums();
         loadTable();
@@ -49,12 +50,18 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    System.out.println(boxFilter.getSelectedIndex());
+                    //System.out.println(boxFilter.getSelectedIndex());
                     int index = boxFilter.getSelectedIndex() + 1;
                     if (index != 0 && index != 2
                             && index != 3 && index != 7) {
                         txtSearch.setEnabled(true);
+                        txtSearch.setText(hintText);
+                        txtSearch.setHorizontalAlignment(JTextField.LEFT);
+                        txtSearch.setForeground(Color.GRAY);
                     } else {
+                        txtSearch.setText("Click →");
+                        txtSearch.setForeground(Color.BLACK);
+                        txtSearch.setHorizontalAlignment(JTextField.RIGHT);
                         txtSearch.setEnabled(false);
                     }
                 }
@@ -76,8 +83,8 @@ public class MainFrame extends javax.swing.JFrame {
             row[3] = car.getManufacturer();
             row[4] = car.getModelNum();
             row[5] = car.getSeats();
-            row[6] = "("+df.format(car.getLatitude())+", "+
-                    df.format(car.getLongitude())+")";
+            row[6] = "(" + df.format(car.getLatitude()) + ", "
+                    + df.format(car.getLongitude()) + ")";
 
             dtm.addRow(row);
         }
@@ -242,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find A Car", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # Between" }));
+        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find A Car", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # (Between)" }));
 
         tblCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -264,7 +271,10 @@ public class MainFrame extends javax.swing.JFrame {
         if (tblCars.getColumnModel().getColumnCount() > 0) {
             tblCars.getColumnModel().getColumn(0).setMinWidth(15);
             tblCars.getColumnModel().getColumn(0).setMaxWidth(15);
-            tblCars.getColumnModel().getColumn(5).setMaxWidth(50);
+            tblCars.getColumnModel().getColumn(4).setMinWidth(60);
+            tblCars.getColumnModel().getColumn(4).setPreferredWidth(60);
+            tblCars.getColumnModel().getColumn(5).setMinWidth(40);
+            tblCars.getColumnModel().getColumn(5).setMaxWidth(40);
             tblCars.getColumnModel().getColumn(6).setMinWidth(120);
         }
 
@@ -296,7 +306,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(panelCarListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelCarListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
                     .addGroup(panelCarListLayout.createSequentialGroup()
                         .addComponent(boxFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -341,7 +351,7 @@ public class MainFrame extends javax.swing.JFrame {
             bottomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bottomPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bottomPanelLayout.setVerticalGroup(
@@ -360,7 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,7 +468,7 @@ public class MainFrame extends javax.swing.JFrame {
         int index = boxFilter.getSelectedIndex() + 1;
         Pattern pattern;
         String txt = null;
-        if (txtSearch.getText().trim().equals("Enter Keywords...")) {
+        if (txtSearch.getText().trim().equals(hintText)) {
             txt = "";
         } else {
             txt = txtSearch.getText().trim();
@@ -475,7 +485,7 @@ public class MainFrame extends javax.swing.JFrame {
                 //--
                 JOptionPane.showMessageDialog(this, "Please choose a filter.",
                         "NOTICE", JOptionPane.INFORMATION_MESSAGE);
-                break;
+                return;
             case 1:
                 //find a car
                 //txt = txtSearch.getText();
@@ -628,9 +638,16 @@ public class MainFrame extends javax.swing.JFrame {
                             dtm.removeRow(i);
                         }
                     }
-
+                } else if (Validator.IsPositiveInt(txt)) {
+                    int a = Integer.parseInt(txt.trim());
+                    for (int i = tblCars.getRowCount() - 1; i >= 0; i--) {
+                        CarInfo car = (CarInfo) tblCars.getValueAt(i, 0);
+                        if (car.getSeats() != a) {
+                            dtm.removeRow(i);
+                        }
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(this, "Correct input format: Left #, Right #",
+                    JOptionPane.showMessageDialog(this, "Correct input format: # or Left #, Right #",
                             "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 }
                 break;
@@ -640,6 +657,7 @@ public class MainFrame extends javax.swing.JFrame {
                 System.out.println("isLatLon: " + Validator.IsLatLon(txt));
                 System.out.println("isYear: " + Validator.IsYear(txt));
                 System.out.println("isBetweenNums: " + Validator.IsBetweenNums(txt));
+                System.out.println("isPositiveInt: " + Validator.IsPositiveInt(txt));
                 break;
         }
 
@@ -656,7 +674,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstructionsActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) bottomPanel.getLayout();
-        InstructionsPanel panel=new InstructionsPanel(this.bottomPanel);
+        InstructionsPanel panel = new InstructionsPanel(this.bottomPanel);
         this.bottomPanel.add("MInstructionsJPanel", panel);
 
         layout.next(bottomPanel);
