@@ -34,7 +34,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private CarList carList;
-    private final String hintText="Enter Keywords";
+    private final String hintText = "Search";
 
     public MainFrame() {
         initComponents();
@@ -51,7 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     //System.out.println(boxFilter.getSelectedIndex());
-                    int index = boxFilter.getSelectedIndex() + 1;
+                    int index = boxFilter.getSelectedIndex();
                     if (index != 0 && index != 2
                             && index != 3 && index != 7) {
                         txtSearch.setEnabled(true);
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Find A Car", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # (Between)" }));
+        boxFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "First Available", "Nearest", "Available", "Unavailable", "City", "Made Year", "Manufacturer", "Maint. Expired", "Model #", "S/N", "Seat # (Between)" }));
 
         tblCars.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -370,7 +370,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,7 +451,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         /*
-        0 --
+        0 First Available
         1 Find A Car
         2 Available
         3 Not Available
@@ -465,7 +465,7 @@ public class MainFrame extends javax.swing.JFrame {
          */
         DefaultTableModel dtm = (DefaultTableModel) tblCars.getModel();
         Date date;
-        int index = boxFilter.getSelectedIndex() + 1;
+        int index = boxFilter.getSelectedIndex();
         Pattern pattern;
         String txt = null;
         if (txtSearch.getText().trim().equals(hintText)) {
@@ -474,18 +474,42 @@ public class MainFrame extends javax.swing.JFrame {
             txt = txtSearch.getText().trim();
         }
         //int noInput[] = {2, 3, 7};
-        if (txt.equals("") && index != 0
+        if (txt.equals("") && index != -1 && index != 0
                 && index != 2 && index != 3 && index != 7) {
             JOptionPane.showMessageDialog(this, "Please Enter Keywords.",
                     "NOTICE", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         switch (index) {
-            case 0:
-                //--
+            case -1:
                 JOptionPane.showMessageDialog(this, "Please choose a filter.",
                         "NOTICE", JOptionPane.INFORMATION_MESSAGE);
                 return;
+            case 0:
+                //first available
+                CarInfo ava = null;
+                for (CarInfo car : carList.getCarList()) {
+                    if (car.isAvailable()) {
+                        ava = car;
+                        break;
+                    }
+                }
+                if (ava != null) {
+                    CardLayout layout = (CardLayout) bottomPanel.getLayout();
+                    for (int i = 1; i < bottomPanel.getComponentCount(); i++) {
+                        bottomPanel.remove(i);
+                    }
+                    layout.first(bottomPanel);
+                    AddViewEditCarPanel panel = new AddViewEditCarPanel(
+                            this, ava,
+                            AddViewEditCarPanel.VIEW_ONLY_OPTION);
+                    this.bottomPanel.add("ViewFirstAvailableCarJPanel", panel);
+                    layout.next(bottomPanel);
+                } else {
+                    JOptionPane.showMessageDialog(this, "NO car found.",
+                            "NOTICE", JOptionPane.INFORMATION_MESSAGE);
+                }
+                break;
             case 1:
                 //find a car
                 //txt = txtSearch.getText();
