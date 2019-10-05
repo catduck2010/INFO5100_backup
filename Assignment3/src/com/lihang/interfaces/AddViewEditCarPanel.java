@@ -146,7 +146,7 @@ public class AddViewEditCarPanel extends JPanel {
 
             this.boxAvail.setEnabled(isEditing);
             this.dateBtnMaintainedUntil.setEnabled(isEditing);
-            this.dateBtnProducted.setEnabled(false);
+            this.dateBtnProducted.setEnabled(isEditing);
         }
     }
 
@@ -543,7 +543,7 @@ public class AddViewEditCarPanel extends JPanel {
                 car.setAvailable(this.boxAvail.isSelected());
 
                 car.setLastMaintenance(this.dateBtnMaintainedUntil.getDate());
-                //car.setProductionDate(this.dateBtnProducted.getDate());
+                car.setProductionDate(this.dateBtnProducted.getDate());
                 mainFrame.getCarList().updateListInfo();
                 mainFrame.getCarList().updateAvailableCars();
                 JOptionPane.showMessageDialog(this, "Car information changed.",
