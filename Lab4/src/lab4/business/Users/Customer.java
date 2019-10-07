@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class Customer extends User implements Comparable<Customer> {
 

@@ -21,7 +21,7 @@ import lab4.util.Validator;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class AdminCreateScreen extends javax.swing.JPanel {
 

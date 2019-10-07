@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class ProductDirectory {
     

@@ -10,7 +10,7 @@ import lab4.business.ProductDirectory;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class Supplier extends User implements Comparable<Supplier> {
 

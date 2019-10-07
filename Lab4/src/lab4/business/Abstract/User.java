@@ -7,11 +7,11 @@ package lab4.business.Abstract;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public abstract class User {
 
-    //public static final int ADMIN = 0;
+    public static final int ADMIN = 0;
     public static final int SUPPLIER = 1;
     public static final int CUSTOMER = 2;
 

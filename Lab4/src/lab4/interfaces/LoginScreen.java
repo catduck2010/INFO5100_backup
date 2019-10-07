@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class LoginScreen extends javax.swing.JPanel {
 

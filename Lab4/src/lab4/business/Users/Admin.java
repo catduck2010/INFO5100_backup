@@ -11,7 +11,7 @@ import lab4.business.SupplierDirectory;
 
 /**
  *
- * @author AEDSpring2019
+ * @author Lihang Zhou
  */
 public class Admin extends User {
     
