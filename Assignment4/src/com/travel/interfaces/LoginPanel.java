@@ -60,10 +60,12 @@ public class LoginPanel extends javax.swing.JPanel {
         this.radioCustomer.addItemListener(il);
         defaultChar = this.txtPswd.getEchoChar();
         fillUserBox();
-
-        txtPswd.setText(TXTPSWD_HINT);
-        txtPswd.setEchoChar('\0');
-        txtPswd.setForeground(Color.GRAY);
+        //set empty password
+//        txtPswd.setText(TXTPSWD_HINT);
+//        txtPswd.setEchoChar('\0');
+//        txtPswd.setForeground(Color.GRAY);
+        //set user "Administrator" default password
+        txtPswd.setText("admin");
 
         txtPswdAddListener();
 
