@@ -139,7 +139,7 @@ public class MainFrame extends javax.swing.JFrame {
         CardLayout layout = (CardLayout) this.rightPanel.getLayout();
         LoginPanel panel = new LoginPanel(
                 this.rightPanel, admins, airliners, customers);
-        this.rightPanel.add(panel);
+        this.rightPanel.add("LoginPanel",panel);
         layout.next(rightPanel);
     }//GEN-LAST:event_btnLoginActionPerformed
 

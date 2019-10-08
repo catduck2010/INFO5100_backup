@@ -49,5 +49,8 @@ public abstract class User {
         return this.username.equals(txtuser) && this.passwd.equals(txtPswd);
     }
     
+    public boolean verify(String pswd){
+        return this.passwd.equals(pswd);
+    }
     
 }

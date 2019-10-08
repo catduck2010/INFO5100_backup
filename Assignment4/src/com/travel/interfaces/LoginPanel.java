@@ -9,10 +9,15 @@ import com.travel.business.AdminList;
 import com.travel.business.AirlinerList;
 import com.travel.business.CustomerList;
 import com.travel.users.*;
+import com.travel.util.Validator;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -29,6 +34,9 @@ public class LoginPanel extends javax.swing.JPanel {
     private final CustomerList customers;
 
     private final JPanel rightPanel;
+    private boolean noUser;
+    static final String TXTPSWD_HINT = "Password";
+    static char defaultChar;
 
     public LoginPanel(JPanel p, AdminList ad, AirlinerList al, CustomerList cl) {
         initComponents();
@@ -36,73 +44,113 @@ public class LoginPanel extends javax.swing.JPanel {
         this.admins = ad;
         this.airliners = al;
         this.customers = cl;
-        ItemListener il=new ItemListener(){
+        ItemListener il = new ItemListener() {
             @Override
-            public void itemStateChanged(ItemEvent e){
+            public void itemStateChanged(ItemEvent e) {
                 //System.out.println(e.getSource());
                 fillUserBox();
-                txtPswd.setText("");
+                txtPswd.setText(TXTPSWD_HINT);
+                txtPswd.setEchoChar('\0');
+                txtPswd.setForeground(Color.GRAY);
             }
         };
-        
+
         this.radioAdmin.addItemListener(il);
         this.radioAir.addItemListener(il);
         this.radioCustomer.addItemListener(il);
-        
+        defaultChar = this.txtPswd.getEchoChar();
         fillUserBox();
+
+        txtPswd.setText(TXTPSWD_HINT);
+        txtPswd.setEchoChar('\0');
+        txtPswd.setForeground(Color.GRAY);
+
+        txtPswdAddListener();
+
     }
-    
-    private void fillUserBox(){
-        if(radioAdmin.isSelected()){
-            if(admins.isEmpty()){
+
+    private void fillUserBox() {
+        noUser = true;
+
+        if (radioAdmin.isSelected()) {
+            if (admins.isEmpty()) {
                 //set no user
                 setUserBoxEmpty();
-            }else{
+            } else {
                 //fill the box
+                noUser = false;
                 loadBoxWithAdmins(admins.getAdminList());
             }
-        }else if(radioAir.isSelected()){
-            if(airliners.isEmpty()){
+        } else if (radioAir.isSelected()) {
+            if (airliners.isEmpty()) {
                 setUserBoxEmpty();
-            }else{
+            } else {
+                noUser = false;
                 loadBoxWithAirliners(airliners.getAirlinerList());
             }
-        }else if(radioCustomer.isSelected()){
-            if(customers.isEmpty()){
+        } else if (radioCustomer.isSelected()) {
+            if (customers.isEmpty()) {
                 setUserBoxEmpty();
-            }else{
+            } else {
+                noUser = false;
                 loadBoxWithCustomers(customers.getCustomerList());
             }
-        }else{
-            
-        }      
+        } else {
+
+        }
     }
-    
-    private void setUserBoxEmpty(){
+
+    private void setUserBoxEmpty() {
         this.boxUsers.removeAllItems();
         this.boxUsers.addItem("No Users");
     }
-    
-    private void loadBoxWithAdmins(ArrayList<Admin> al){
+
+    private void loadBoxWithAdmins(ArrayList<Admin> al) {
         this.boxUsers.removeAllItems();
-        for(Admin a:al){
+        for (Admin a : al) {
             this.boxUsers.addItem(a);
         }
     }
-    
-    private void loadBoxWithAirliners(ArrayList<Airliner> al){
+
+    private void loadBoxWithAirliners(ArrayList<Airliner> al) {
         this.boxUsers.removeAllItems();
-        for(Airliner a:al){
+        for (Airliner a : al) {
             this.boxUsers.addItem(a);
         }
     }
-    
-    private void loadBoxWithCustomers(ArrayList<Customer> al){
+
+    private void loadBoxWithCustomers(ArrayList<Customer> al) {
         this.boxUsers.removeAllItems();
-        for(Customer a:al){
+        for (Customer a : al) {
             this.boxUsers.addItem(a);
         }
     }
+
+    private void txtPswdAddListener() {
+        txtPswd.addFocusListener(new FocusListener() {
+            @Override
+            public void focusLost(FocusEvent e) {// when focus lost
+                String pswd = new String(txtPswd.getPassword()).trim();
+                if (pswd.equals("")) {// no password
+                    txtPswd.setEchoChar('\0');// plaintext
+                    txtPswd.setText(TXTPSWD_HINT);
+                    txtPswd.setForeground(Color.LIGHT_GRAY);
+                }
+            }
+
+            @Override
+            public void focusGained(FocusEvent e) {// when focus gained
+                String pswd = new String(txtPswd.getPassword()).trim();
+                if (pswd.equals(TXTPSWD_HINT)) {
+                    txtPswd.setText("");
+                    txtPswd.setEchoChar(defaultChar);// ciphertext
+                    txtPswd.setForeground(Color.BLACK);
+                }
+            }
+        });
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,34 +203,38 @@ public class LoginPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnGoBack)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(radioAdmin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioAir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(radioCustomer))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtPswd)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnLogin))
-                        .addComponent(boxUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnGoBack)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(70, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(boxUsers, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(radioAdmin)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioAir)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioCustomer)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPswd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLogin)))))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnGoBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -191,18 +243,29 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(radioCustomer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boxUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPswd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogin))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         //test
-        System.out.println(txtPswd.getPassword());
+        String pswd = new String(txtPswd.getPassword()).trim();
+
+        if (noUser) {
+            JOptionPane.showMessageDialog(this, "There is no users now.", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else if (Validator.IsEmpty(pswd)) {
+            JOptionPane.showMessageDialog(this, "Please Enter Password", "WARNING", JOptionPane.WARNING_MESSAGE);
+        } else if (((User) this.boxUsers.getSelectedItem()).verify(pswd)) {
+            //pass
+            System.out.println("Pass");
+        } else {
+            JOptionPane.showMessageDialog(this, "Wrong Password", "WARNING", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
