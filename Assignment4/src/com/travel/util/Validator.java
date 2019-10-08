@@ -36,11 +36,12 @@ public class Validator {
         return Match(regex, str);
     }
 
-    public static boolean IsEmpty(String str) {
-        if (str == null || str.length() <= 0) {
-            return true;
-        }
-        return false;
+    public static boolean IsNotEmpty(String str) {
+        return !(str == null || str.length() <= 0);
+    }
+    
+    public static boolean IsEmpty(String str){
+        return !IsNotEmpty(str);
     }
 
     private static boolean Match(String regex, String str) {
