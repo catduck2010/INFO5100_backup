@@ -11,9 +11,10 @@ package com.travel.business;
  */
 public abstract class User {
 
+    public static int ADMINISTRATOR = 0;
     public static int AIRLINER = 1;
     public static int CUSTOMER = 2;
-    
+
     private String username;
     private String passwd;
     private int userType;
@@ -48,4 +49,9 @@ public abstract class User {
         this.userType = userType;
     }
 
+    public boolean verify(String txtuser, String txtPswd) {
+        return this.username.equals(txtuser) && this.passwd.equals(txtPswd);
+    }
+    
+    
 }

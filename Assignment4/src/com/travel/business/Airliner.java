@@ -11,12 +11,20 @@ package com.travel.business;
  */
 public class Airliner extends User {
 
-    private FlightDirectory flightDirectory;
+    private final FlightDirectory flightDirectory;
     private String providerName;
 
     public Airliner(String uname, String pw) {
         super(uname, pw, User.AIRLINER);
         this.flightDirectory = new FlightDirectory();
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
     }
     
 }

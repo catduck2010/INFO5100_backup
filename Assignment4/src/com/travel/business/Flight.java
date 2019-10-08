@@ -18,6 +18,7 @@ public class Flight {
     private Date landTime;
     private String departure;
     private String arrival;
+    private double ticketPrice;
     
     private CustomerList onBoard;
     
