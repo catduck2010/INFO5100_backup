@@ -9,7 +9,9 @@ import com.travel.users.Admin;
 import com.travel.business.AdminList;
 import com.travel.business.AirlinerList;
 import com.travel.business.CustomerList;
+import com.travel.users.User;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -135,7 +137,8 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) this.rightPanel.getLayout();
-        LoginPanel panel = new LoginPanel(admins,airliners,customers);
+        LoginPanel panel = new LoginPanel(
+                this.rightPanel, admins, airliners, customers);
         this.rightPanel.add(panel);
         layout.next(rightPanel);
     }//GEN-LAST:event_btnLoginActionPerformed

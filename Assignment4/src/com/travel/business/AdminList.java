@@ -19,18 +19,30 @@ public class AdminList {
     public AdminList() {
         this.adminList = new ArrayList<>();
     }
+
+    public ArrayList<Admin> getAdminList() {
+        return adminList;
+    }
+
     
-    public void addAdmin(Admin a){
+    public void addAdmin(Admin a) {
         adminList.add(a);
     }
-    
-    public Admin addAdmin(String uname,String pw){
+
+    public Admin addAdmin(String uname, String pw) {
         Admin a = new Admin(uname, pw);
         adminList.add(a);
         return a;
     }
-    
-    public void deleteAdmin(Admin a){
+
+    public void deleteAdmin(Admin a) {
         adminList.remove(a);
     }
+
+
+    public boolean isEmpty() {
+        return adminList.isEmpty();
+    }
+    
+    
 }

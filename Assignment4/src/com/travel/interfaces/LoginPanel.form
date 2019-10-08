@@ -35,19 +35,26 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="txtPswd" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jComboBox1" min="-2" pref="263" max="-2" attributes="0"/>
+                      <Component id="boxUsers" min="-2" pref="263" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="90" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="80" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnGoBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -56,11 +63,11 @@
                   <Component id="radioCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
+              <Component id="boxUsers" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtPswd" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
@@ -68,7 +75,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="jComboBox1">
+    <Component class="javax.swing.JComboBox" name="boxUsers">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
@@ -77,17 +84,17 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Object&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtPswd">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnLogin">
       <Properties>
         <Property name="text" type="java.lang.String" value="Login"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioAdmin">
@@ -119,6 +126,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Login as:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGoBack">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;&lt; Go Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGoBackActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

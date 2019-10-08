@@ -29,5 +29,10 @@ public class Admin extends User {
         this.customers = cl;
         this.airliners = al;
     }
+    
+    @Override
+    public String toString(){
+        return this.getUsername();
+    }
 
 }

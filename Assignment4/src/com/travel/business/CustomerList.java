@@ -13,8 +13,20 @@ import java.util.ArrayList;
  * @author lihang
  */
 public class CustomerList {
+
     private final ArrayList<Customer> customerList;
-    public CustomerList(){
-        this.customerList=new ArrayList<>();
+
+    public CustomerList() {
+        this.customerList = new ArrayList<>();
+    }
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
+    
+    
+
+    public boolean isEmpty() {
+        return customerList.isEmpty();
     }
 }

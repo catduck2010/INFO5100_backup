@@ -20,4 +20,14 @@ public class AirlinerList {
         this.airlinerList = new ArrayList<>();
     }
 
+    public boolean isEmpty() {
+        return airlinerList.isEmpty();
+    }
+
+    public ArrayList<Airliner> getAirlinerList() {
+        return airlinerList;
+    }
+    
+    
+
 }
