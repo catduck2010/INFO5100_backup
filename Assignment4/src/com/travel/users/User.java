@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travel.business;
+package com.travel.users;
 
 /**
  *
@@ -17,7 +17,7 @@ public abstract class User {
 
     private String username;
     private String passwd;
-    private int userType;
+    private final int userType;
 
     public User(String uname, String pw, int type) {
         this.username = uname;
@@ -43,10 +43,6 @@ public abstract class User {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
     }
 
     public boolean verify(String txtuser, String txtPswd) {

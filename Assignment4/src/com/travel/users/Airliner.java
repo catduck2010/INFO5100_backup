@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.travel.business;
+package com.travel.users;
+
+import com.travel.business.FlightDirectory;
+import com.travel.users.User;
 
 /**
  *

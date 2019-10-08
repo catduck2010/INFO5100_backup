@@ -5,6 +5,7 @@
  */
 package com.travel.business;
 
+import com.travel.users.Customer;
 import java.util.ArrayList;
 
 /**

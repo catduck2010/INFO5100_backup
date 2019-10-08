@@ -5,14 +5,19 @@
  */
 package com.travel.business;
 
+import com.travel.users.Airliner;
+import java.util.ArrayList;
+
 /**
  *
  * @author lihang
  */
-public class Admin extends User{
-    
-    public Admin(String uname, String pw) {
-        super(uname, pw, User.ADMINISTRATOR);
+public class AirlinerList {
+
+    private final ArrayList<Airliner> airlinerList;
+
+    public AirlinerList() {
+        this.airlinerList = new ArrayList<>();
     }
-    
+
 }
