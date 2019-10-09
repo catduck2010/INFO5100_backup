@@ -12,6 +12,9 @@ import com.travel.business.CustomerList;
 import com.travel.users.User;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -26,11 +29,36 @@ public class MainFrame extends javax.swing.JFrame {
     private final AirlinerList airliners = new AirlinerList();
     private final CustomerList customers = new CustomerList();
 
+    private User loggedUser = null;
+    private boolean loggedIn = false;
+
     public MainFrame() {
         initComponents();
         this.rightPanel.setLayout(new CardLayout());
         this.admins.addAdmin(new Admin("Administrator", "admin",
                 this.airliners, this.customers));
+    }
+
+    public JPanel getRightPanel() {
+        return this.rightPanel;
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
+    }
+
+    public JButton getBtnRegister() {
+        return btnRegister;
+    }
+
+    public void setLoggedIn(boolean b) {
+        if (b) {
+            this.btnLogin.setText("Logout");
+        } else {
+            this.btnLogin.setText("Login");
+        }
+        this.btnRegister.setEnabled(!b);
+        loggedIn = b;
     }
 
     /**
@@ -59,7 +87,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        btnRegister.setText("Register");
+        btnRegister.setText("Sign Up");
 
         btnExit.setText("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
@@ -94,16 +122,16 @@ public class MainFrame extends javax.swing.JFrame {
         jSplitPane1.setLeftComponent(jPanel1);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Please Login to Continue");
+        jLabel1.setText("Please Login or Sign Up to Continue");
 
         javax.swing.GroupLayout rightPanelLayout = new javax.swing.GroupLayout(rightPanel);
         rightPanel.setLayout(rightPanelLayout);
         rightPanelLayout.setHorizontalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rightPanelLayout.createSequentialGroup()
-                .addContainerGap(240, Short.MAX_VALUE)
+                .addContainerGap(223, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(240, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         rightPanelLayout.setVerticalGroup(
             rightPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +147,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,10 +165,24 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) this.rightPanel.getLayout();
-        LoginPanel panel = new LoginPanel(
-                this.rightPanel, admins, airliners, customers);
-        this.rightPanel.add("LoginPanel",panel);
-        layout.next(rightPanel);
+        if (!loggedIn) {
+            LoginPanel panel = new LoginPanel(
+                    this, admins, airliners, customers);
+            this.rightPanel.add("LoginPanel", panel);
+            layout.next(rightPanel);
+            //loggedIn=true;
+        } else {
+            if (JOptionPane.showConfirmDialog(this, "Are you sure to log out?", "WARNING",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                for (int i = 1; i < rightPanel.getComponentCount(); i++) {
+                    rightPanel.remove(i);
+                }
+                layout.first(rightPanel);
+                loggedIn=false;
+                setLoggedIn(loggedIn);
+            }
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

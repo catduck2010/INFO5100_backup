@@ -33,14 +33,16 @@ public class LoginPanel extends javax.swing.JPanel {
     private final AirlinerList airliners;
     private final CustomerList customers;
 
+    private final MainFrame mFrame;
     private final JPanel rightPanel;
     private boolean noUser;
     static final String TXTPSWD_HINT = "Password";
     static char defaultChar;
 
-    public LoginPanel(JPanel p, AdminList ad, AirlinerList al, CustomerList cl) {
+    public LoginPanel(MainFrame f, AdminList ad, AirlinerList al, CustomerList cl) {
         initComponents();
-        this.rightPanel = p;
+        this.mFrame = f;
+        this.rightPanel = f.getRightPanel();
         this.admins = ad;
         this.airliners = al;
         this.customers = cl;
@@ -64,6 +66,7 @@ public class LoginPanel extends javax.swing.JPanel {
 //        txtPswd.setText(TXTPSWD_HINT);
 //        txtPswd.setEchoChar('\0');
 //        txtPswd.setForeground(Color.GRAY);
+
         //set user "Administrator" default password
         txtPswd.setText("admin");
 
@@ -151,8 +154,14 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         });
     }
-    
-    
+
+    private void grantAccess(User u) {
+        mFrame.setLoggedIn(true);
+        CardLayout layout = (CardLayout) this.rightPanel.getLayout();
+        MainMenuPanel panel=new MainMenuPanel();
+        this.rightPanel.add(panel);
+        layout.next(rightPanel);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -264,6 +273,7 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please Enter Password", "WARNING", JOptionPane.WARNING_MESSAGE);
         } else if (((User) this.boxUsers.getSelectedItem()).verify(pswd)) {
             //pass
+            grantAccess((User) this.boxUsers.getSelectedItem());
             System.out.println("Pass");
         } else {
             JOptionPane.showMessageDialog(this, "Wrong Password", "WARNING", JOptionPane.WARNING_MESSAGE);
