@@ -109,7 +109,7 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
-        // TODO add your handling code here:
+        // Stop to add cardlayout when no users
         if(adminUser.getSuppDir().getSupplierList().isEmpty()){
             JOptionPane.showMessageDialog(this, "No Users.", "Unable to Login", JOptionPane.WARNING_MESSAGE);
             return;
@@ -120,7 +120,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSupplierActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-        // TODO add your handling code here:
+        // Stop to add cardlayout when no users
         if(adminUser.getCustDir().getCustomerList().isEmpty()){
             JOptionPane.showMessageDialog(this, "No Users.", "Unable to Login", JOptionPane.WARNING_MESSAGE);
             return;
