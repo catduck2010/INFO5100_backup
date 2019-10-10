@@ -8,6 +8,7 @@ package lab4.interfaces;
 import lab4.business.Abstract.User;
 import lab4.business.Users.Admin;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,7 +98,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +110,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierActionPerformed
         // TODO add your handling code here:
+        if(adminUser.getSuppDir().getSupplierList().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No Users.", "Unable to Login", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         CardLayout layout = (CardLayout) panelRight.getLayout();
         panelRight.add(new LoginScreen(panelRight, adminUser.getSuppDir().getSupplierList(), User.SUPPLIER));
         layout.next(panelRight);
@@ -116,6 +121,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
         // TODO add your handling code here:
+        if(adminUser.getCustDir().getCustomerList().isEmpty()){
+            JOptionPane.showMessageDialog(this, "No Users.", "Unable to Login", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         CardLayout layout = (CardLayout) panelRight.getLayout();
         panelRight.add(new LoginScreen(panelRight, adminUser.getCustDir().getCustomerList(), User.CUSTOMER));
         layout.next(panelRight);
