@@ -60,7 +60,15 @@ public class AdminMainScreen extends javax.swing.JPanel {
             new String [] {
                 "Customer Name", "Date Created"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tableCust);
 
         tableSup.setModel(new javax.swing.table.DefaultTableModel(
@@ -70,7 +78,15 @@ public class AdminMainScreen extends javax.swing.JPanel {
             new String [] {
                 "Supplier Name", "Number of Products"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tableSup);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
