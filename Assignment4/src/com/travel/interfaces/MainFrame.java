@@ -61,6 +61,14 @@ public class MainFrame extends javax.swing.JFrame {
         loggedIn = b;
     }
 
+    public void clearCardLayout() {
+        CardLayout layout = (CardLayout) this.rightPanel.getLayout();
+        for (int i = rightPanel.getComponentCount() - 1; i > 0; i--) {
+            rightPanel.remove(i);
+        }
+        layout.first(rightPanel);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,15 +182,12 @@ public class MainFrame extends javax.swing.JFrame {
         } else {
             if (JOptionPane.showConfirmDialog(this, "Are you sure to log out?", "WARNING",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                for (int i = 1; i < rightPanel.getComponentCount(); i++) {
-                    rightPanel.remove(i);
-                }
-                layout.first(rightPanel);
-                loggedIn=false;
+                clearCardLayout();
+                loggedIn = false;
                 setLoggedIn(loggedIn);
             }
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
