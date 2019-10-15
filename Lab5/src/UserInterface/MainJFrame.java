@@ -146,7 +146,8 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         if(!flag){
-            JOptionPane.showMessageDialog(this, "Invalid", "WRONG", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Username or password invalid.",
+                    "WRONG", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
